@@ -5,7 +5,6 @@
 #include <string_view>
 
 namespace Util {
-	//BUILDS A NEW CASE
 	void format_string(std::string& target_string);
 
 	//SKIPS BAD INPUT
