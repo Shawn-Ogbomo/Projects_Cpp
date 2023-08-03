@@ -7,10 +7,15 @@
 //Input from cin; output to cout.
 
 #include <iostream>
+#include "player.h"
 
 int main() {
 	try {
+		for (Player p; std::cin >> p;) {
+			p = {};
+		}
 	}
 	catch (const std::exception& e) {
+		std::cerr << e.what() << "\n";
 	}
 }
