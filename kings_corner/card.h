@@ -2,6 +2,8 @@
 #define CARD_H
 
 #include <vector>
+#include <iostream>
+
 enum class Suit {
 	Hearts = 1, Diamonds, Clubs, Spades
 };
@@ -13,7 +15,9 @@ enum class Color {
 class Card {
 public:
 	explicit Card(std::string_view name, Suit su, int val, Color co);
-
+	friend std::ostream& operator << (std::ostream& os, const Card& c);
+	std::string_view suit()const;
+	std::string_view color()const;
 private:
 	std::string n;
 	Suit s{};
@@ -24,7 +28,6 @@ private:
 class Deck {
 public:
 	Deck();
-
 private:
 	void shuffle();
 	std::vector<Card> cards;

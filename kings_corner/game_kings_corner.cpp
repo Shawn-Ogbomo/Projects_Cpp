@@ -11,9 +11,7 @@
 
 int main() {
 	try {
-		for (Player p; std::cin >> p;) {
-			p = {};
-		}
+		Deck d;
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << "\n";
