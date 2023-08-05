@@ -28,6 +28,7 @@ private:
 class Deck {
 public:
 	Deck();
+	Card draw();
 private:
 	void shuffle();
 	std::vector<Card> cards;

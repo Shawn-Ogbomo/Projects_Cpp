@@ -53,9 +53,24 @@ Deck::Deck() {
 		cards.emplace_back(key, Suit::Clubs, value, Color::Black);
 		cards.emplace_back(key, Suit::Spades, value, Color::Black);
 	}
+
+	shuffle();
+}
+
+Card Deck::draw() {
+	if (cards.empty()) {
+		throw std::runtime_error{ "Oops the deck is empty" };
+	}
+
+	auto back_card = cards.back();
+
+	cards.pop_back();
+
+	return back_card;
 }
 
 void Deck::shuffle() {
+	//GENERATE RANDOM HERE...
 }
 
 std::ostream& operator<<(std::ostream& os, const Card& c) {
