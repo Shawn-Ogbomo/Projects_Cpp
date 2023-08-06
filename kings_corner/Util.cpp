@@ -46,7 +46,6 @@ int Util::generate_random_number(int x, int y) {
 		|| x < 0
 		|| y < 0
 		|| x == y) {
-		//THROW EXCEPTION
 		throw std::runtime_error{ "Invalid range..." };
 	}
 
