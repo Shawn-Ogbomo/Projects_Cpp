@@ -1,6 +1,6 @@
 #include <iostream>
 #include "player.h"
-#include "Util.h"
+#include "util.h"
 
 Player::Player() = default;
 
@@ -18,7 +18,8 @@ Player::Player(const std::string& name, char gender, int age)
 		|| Util::found_duplicates(n, ' ')
 		|| g != male && g != female
 		|| !a
-		|| age > max_age) {
+		|| a < 0
+		|| a > max_age) {
 		throw std::runtime_error{ "Invalid Player credentials..." };
 	}
 }

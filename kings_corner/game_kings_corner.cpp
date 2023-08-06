@@ -12,6 +12,7 @@
 int main() {
 	try {
 		Deck d;
+		std::cout << d.draw();
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << "\n";

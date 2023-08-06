@@ -1,7 +1,8 @@
 #include <iostream>
 #include <algorithm>
-#include "util.h"
+#include <random>
 #include "exceptions.h"
+#include "util.h"
 
 void Util::format_string(std::string& target_string) {
 	if (!target_string.empty()) {
@@ -38,4 +39,19 @@ void Util::check_stream(std::istream& is, const std::string& message, const std:
 bool Util::found_duplicates(std::string_view target_string, char c) {
 	const int num_items = std::count(target_string.begin(), target_string.end(), c);
 	return num_items > 1;
+}
+
+int Util::generate_random_number(int x, int y) {
+	if (x > y
+		|| x < 0
+		|| y < 0
+		|| x == y) {
+		//THROW EXCEPTION
+		throw std::runtime_error{ "Invalid range..." };
+	}
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution distrib(x, y);
+	return distrib(gen);
 }

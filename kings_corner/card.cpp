@@ -2,6 +2,7 @@
 #include <string>
 #include <iomanip>
 #include "card.h"
+#include "util.h"
 
 Card::Card(std::string_view name, Suit su, int val, Color co)
 	:n{ name },
@@ -21,7 +22,6 @@ std::string_view Card::suit() const {
 		return "Clubs";
 	case Suit::Spades:
 		return "Spades";
-		break;
 	}
 	throw std::runtime_error{ "oops, something went wrong..." };
 }
@@ -33,8 +33,6 @@ std::string_view Card::color() const {
 		return "Red";
 	case Color::Black:
 		return "Black";
-	default:
-		break;
 	}
 	throw std::runtime_error{ "oops, something went wrong..." };
 }
@@ -70,7 +68,11 @@ Card Deck::draw() {
 }
 
 void Deck::shuffle() {
-	//GENERATE RANDOM HERE...
+	const auto& max_sz_deck = cards.size();
+
+	for (auto i = 0U; i < max_sz_deck; ++i) {
+		std::swap(cards[i], cards[Util::generate_random_number(0, max_sz_deck - 1)]);
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Card& c) {
