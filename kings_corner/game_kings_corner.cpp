@@ -7,8 +7,8 @@
 //Input from cin; output to cout.
 
 #include <iostream>
-#include "player.h"
-#include "exceptions.h"
+#include "player.hpp"
+#include "exceptions.hpp"
 
 struct Board {
 	Deck middle_pile;
@@ -16,10 +16,10 @@ struct Board {
 	std::vector<Card> south_pile;
 	std::vector<Card> east_pile;
 	std::vector<Card> west_pile;
-	std::vector<Card> top_left_pile;
-	std::vector<Card> top_right_pile;
-	std::vector<Card> bottom_left_pile;
-	std::vector<Card> bottom_right_pile;
+	std::vector<Card> north_west_pile;
+	std::vector<Card> north_east_pile;
+	std::vector<Card> south_west_pile;
+	std::vector<Card> south_east_pile;
 };
 
 const char quit = 'q';
@@ -29,6 +29,7 @@ const std::string_view ex_key = "exit";
 int main() {
 	try {
 		Board game_board;
+		Player p1{ "Shawn", 'M', 30 };
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << "\n";

@@ -1,8 +1,9 @@
 #include <map>
 #include <string>
 #include <iomanip>
-#include "card.h"
-#include "util.h"
+#include <algorithm>
+#include "card.hpp"
+#include "util.hpp"
 
 Card::Card(std::string_view name, Suit su, int val, Color co)
 	:n{ name },
@@ -23,7 +24,7 @@ std::string_view Card::suit() const {
 	case Suit::Spades:
 		return "Spades";
 	}
-	throw std::runtime_error{ "oops, something went wrong..." };
+	throw std::runtime_error{ "oops, something went wrong..." };	//LOOK AT THE ISO STANDARD WE SHOULD NEVER GET HERE
 }
 
 std::string_view Card::color() const {
@@ -55,16 +56,14 @@ Deck::Deck() {
 	shuffle();
 }
 
-Card Deck::draw() {
+void Deck::draw(Player& p) {
 	if (cards.empty()) {
 		throw std::runtime_error{ "Oops the deck is empty" };
 	}
 
-	auto back_card = cards.back();
+	p.hand().push_back(cards.back());
 
 	cards.pop_back();
-
-	return back_card;
 }
 
 void Deck::shuffle() {
@@ -79,4 +78,11 @@ std::ostream& operator<<(std::ostream& os, const Card& c) {
 	return os << "|" << std::setw(5) << c.n << "| " << std::setw(8) << c.suit()
 		<< "|" << std::setw(2) << c.v << "|" << std::setw(5) << c.color()
 		<< "|\n";
+}
+
+std::ostream& operator<<(std::ostream& os, const Deck& d) {
+	std::for_each(d.cards.begin(), d.cards.end(), [&os](const Card& c) {
+		os << c;
+		});
+	return os;
 }

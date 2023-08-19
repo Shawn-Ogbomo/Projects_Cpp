@@ -1,9 +1,10 @@
-#ifndef CARD_H
-#define CARD_H
+#ifndef CARD_HPP
+#define CARD_HPP
 
 #include <vector>
 #include <iostream>
 
+class Player;
 enum class Suit {
 	Hearts = 1, Diamonds, Clubs, Spades
 };
@@ -28,9 +29,10 @@ private:
 class Deck {
 public:
 	Deck();
-	Card draw();
+	friend std::ostream& operator<<(std::ostream& os, const Deck& d);
+	void draw(Player& p);
 private:
 	void shuffle();
 	std::vector<Card> cards;
 };
-#endif // CARD_H
+#endif // CARD_HPP
