@@ -1,6 +1,7 @@
 #include <iostream>
-#include "player.hpp"
-#include "util.hpp"
+#include <iomanip>
+#include "player.h"
+#include "util.h"
 
 Player::Player() = default;
 
@@ -22,10 +23,6 @@ Player::Player(const std::string& name, char gender, int age)
 	}
 }
 
-std::vector<Card>& Player::hand() {
-	return h;
-}
-
 std::istream& operator>>(std::istream& is, Player& p) {
 	std::string name;
 	int age;
@@ -43,4 +40,8 @@ std::istream& operator>>(std::istream& is, Player& p) {
 	p = temp;
 
 	return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Player& p) {
+	return os << "Name: " << p.n << "\n" << "Sex: " << p.g << "\n" << "Age: " << p.a;
 }

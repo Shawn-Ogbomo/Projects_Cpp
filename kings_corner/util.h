@@ -1,5 +1,5 @@
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#ifndef UTIL_H
+#define UTIL_H
 
 #include <string>
 #include <string_view>
@@ -14,5 +14,8 @@ namespace Util {
 
 	//GENERATES AN ARBITARY INTEGER IN THE RANGE X-Y INCLUSISIVE
 	int generate_random_number(int x, int y);
+
+	//CLEARS INPUT FROM CIN
+	void clean_up_mess(char terminator);
 }
-#endif // UTIL_HPP
+#endif // UTIL_H

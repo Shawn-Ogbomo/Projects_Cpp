@@ -2,8 +2,8 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
-#include "card.hpp"
-#include "util.hpp"
+#include "card.h"
+#include "util.h"
 
 Card::Card(std::string_view name, Suit su, int val, Color co)
 	:n{ name },
@@ -24,7 +24,7 @@ std::string_view Card::suit() const {
 	case Suit::Spades:
 		return "Spades";
 	}
-	throw std::runtime_error{ "oops, something went wrong..." };	//LOOK AT THE ISO STANDARD WE SHOULD NEVER GET HERE
+	throw std::runtime_error{ "oops, something went wrong..." };
 }
 
 std::string_view Card::color() const {
@@ -61,9 +61,8 @@ void Deck::draw(Player& p) {
 		throw std::runtime_error{ "Oops the deck is empty" };
 	}
 
-	p.hand().push_back(cards.back());
-
-	cards.pop_back();
+	//p.hand().push_back(cards.back());
+	//cards.pop_back();
 }
 
 void Deck::shuffle() {

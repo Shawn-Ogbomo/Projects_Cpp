@@ -1,10 +1,10 @@
-#ifndef CARD_HPP
-#define CARD_HPP
+#ifndef CARD_H
+#define CARD_H
 
 #include <vector>
 #include <iostream>
+#include "player.h"
 
-class Player;
 enum class Suit {
 	Hearts = 1, Diamonds, Clubs, Spades
 };
@@ -35,4 +35,5 @@ private:
 	void shuffle();
 	std::vector<Card> cards;
 };
-#endif // CARD_HPP
+
+#endif // CARD_H

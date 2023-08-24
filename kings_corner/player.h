@@ -1,9 +1,8 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <string>
 #include <vector>
-#include "card.hpp"
 
 class Player {
 	static constexpr int max_age = 120;
@@ -13,11 +12,10 @@ public:
 	Player();
 	explicit Player(const std::string& name, char gender, int age);
 	friend std::istream& operator >> (std::istream& is, Player& p);
-	std::vector<Card>& hand();
+	friend std::ostream& operator <<(std::ostream& os, const Player& p);
 private:
 	std::string n;
 	char g{};
 	int a{};
-	std::vector<Card> h;
 };
-#endif // PLAYER_HPP
+#endif // PLAYER_H

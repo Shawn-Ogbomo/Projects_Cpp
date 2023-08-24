@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
-#include "exceptions.hpp"
-#include "util.hpp"
+#include "exceptions.h"
+#include "util.h"
 
 void Util::format_string(std::string& target_string) {
 	if (!target_string.empty()) {
@@ -24,8 +24,7 @@ void Util::check_stream(std::istream& is, const std::string& message, const std:
 }
 
 bool Util::found_duplicates(std::string_view target_string, char c) {
-	const int num_items = std::count(target_string.begin(), target_string.end(), c);
-	return num_items > 1;
+	return std::count(target_string.begin(), target_string.end(), c) > 1;
 }
 
 int Util::generate_random_number(int x, int y) {
@@ -40,4 +39,16 @@ int Util::generate_random_number(int x, int y) {
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution distrib(x, y);
 	return distrib(gen);
+}
+
+void Util::clean_up_mess(char terminator) {
+	std::cout << "\n\nPress " << terminator << " to continue: ";
+
+	for (char ch{}; std::cin >> ch;) {
+		if (ch == terminator) {
+			return;
+		}
+	}
+
+	Util::check_stream(std::cin, "Exiting...");
 }
