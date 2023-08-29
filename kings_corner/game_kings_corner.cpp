@@ -12,37 +12,43 @@
 #include "board.h"
 #include "util.h"
 
-const char quit = 'q';
-const char reset = 'o';
-const char start = 'x';
-const std::string_view ex_key = "exit";
+std::string_view  quit = "q";
+std::string_view  reset = "o";
+std::string_view start = "x";
+std::string_view  help = "h";
+std::string_view ex_key = "exit";
 
-void main_screen() {
+[[noreturn]] void main_screen() {
 	while (true) try {
-		std::cout << "\nKings Corner Press x to start o to reset: ";
-		char ch{};
-		std::cin >> ch;
-		Util::check_stream(std::cin, "Exiting...");
+		std::cout << "\nKings Corner Press x to start o to reset : ";
 
-		switch (ch) {
-		case start:
-		{
+		std::string s;
+		std::getline(std::cin, s);
+
+		if (s == start) {
+			//START GAME IN HERE
 			std::cout << "Game starting...\n";
-			return;
-		}
-		case reset:
-		{
 			throw std::runtime_error{ "Reseting...\n" };
 		}
 
-		default:
-			std::cout << "\nInvalid input\n";
-			Util::clean_up_mess(';');
-			break;
+		if (s == reset) {
+			throw std::runtime_error{ "Reseting...\n" };
 		}
+
+		if (s == quit) {
+			std::cout << "Quit...\n";
+			throw Terminate{ "Exiting..." };
+		}
+
+		if (s == help) {
+			std::cout << "Help screen...";
+			throw std::runtime_error{ "Reseting...\n" };
+		}
+
+		throw std::runtime_error{ "Invalid input. Try again...\n" };
 	}
 
-	catch (const std::exception& e) {
+	catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
 }
